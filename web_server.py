@@ -1,6 +1,7 @@
 import socket
 import os
 import threading
+import sys
 
 def parse_request(client_socket):
     # Baca data request dari client socket
@@ -23,7 +24,7 @@ def parse_request(client_socket):
             key, value = line.split(": ")
             headers[key] = value
 
-    # Kembalikan data request yang telah di-parsing
+    # Return data request yang telah di-parsing
     return {
         "method": method,
         "resource": resource,
@@ -42,7 +43,7 @@ def handle_client(client_socket, client_address):
         # Dapatkan resource yang diminta
         requested_resource = request_data["resource"]
 
-        # Konstruksi jalur file
+        # Buat path file dari resource
         file_path = os.path.join(".", requested_resource[1:])  # Hapus '/' di awal
 
         # Periksa apakah file ada
@@ -51,7 +52,7 @@ def handle_client(client_socket, client_address):
             with open(file_path, "rb") as file:
                 file_data = file.read()
 
-            # Konstruksi respons HTTP
+            # Buat respons HTTP
             response_headers = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n"
             response_data = response_headers.encode() + file_data
 
@@ -73,18 +74,18 @@ def start_server(host, port):
     server_address = (host, port)
     server_socket.bind(server_address)
 
-    # Listen untuk koneksi masuk
+    # Listen untuk connection masuk
     server_socket.listen(5)
 
     print(f"Server sedang mendengarkan pada {host}:{port}")
 
     try:
         while True:
-            # Tunggu koneksi client
-            print("Menunggu koneksi...")
+            # Tunggu connection client
+            print("Menunggu connection...")
             client_socket, client_address = server_socket.accept()
 
-            # Mulai thread baru untuk menangani koneksi client
+            # Mulai thread baru untuk menangani connection client
             client_thread = threading.Thread(target=handle_client, args=(client_socket, client_address))
             client_thread.start()
 
@@ -93,9 +94,9 @@ def start_server(host, port):
         server_socket.close()
 
 if __name__ == "__main__":
-    # Dapatkan host dan port server
+    # Dapatkan host dan port server dari command-line arguments
     host = socket.gethostname()
-    port = 8000
-
+    port = int(sys.argv[1]) if len(sys.argv) > 1 else 8000
+   
     # Mulai server
     start_server(host, port)
