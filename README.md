@@ -1,13 +1,13 @@
 # TUBES JARKOM
 
-## Usage
+## Cara Penggunaan
 
-Start the web server:
+Menjalankan server web:
 ```bash
 python web_server.py <port>
 ```
 
-Start the client:
+Menjalankan klien:
 ```bash
-python client.py <server_ip> <server_port> <file_name>
+python client.py <server_port> <nama_file>
 ```

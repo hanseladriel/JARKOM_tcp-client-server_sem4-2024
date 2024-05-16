@@ -38,7 +38,7 @@ def handle_client(client_socket, client_address):
 
         # Parsing request HTTP
         request_data = parse_request(client_socket)
-        print(f"Request: {request_data}")
+        print(f"Request: {request_data}\n")
 
         # Dapatkan resource yang diminta
         requested_resource = request_data["resource"]
@@ -95,8 +95,10 @@ def start_server(host, port):
 
 if __name__ == "__main__":
     # Dapatkan host dan port server dari command-line arguments
-    host = socket.gethostname()
+    host = "127.0.0.1"
     port = int(sys.argv[1]) if len(sys.argv) > 1 else 8000
-   
+
+    print(f"Memulai server pada {host}:{port}")
+
     # Mulai server
     start_server(host, port)

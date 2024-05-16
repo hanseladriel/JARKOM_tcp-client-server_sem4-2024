@@ -34,13 +34,13 @@ def send_request(host, port, resource):
 
 if __name__ == "__main__":
     # Dapatkan command-line arguments
-    if len(sys.argv) != 4:
+    if len(sys.argv) != 3:
         print(f"Usage: {sys.argv[0]} server_host server_port filename")
         sys.exit(1)
 
-    host = sys.argv[1]
-    port = int(sys.argv[2])
-    resource = f"/{sys.argv[3]}"
+    host = "127.0.0.1"
+    port = int(sys.argv[1])
+    resource = f"/{sys.argv[2]}"
 
     # Kirim request ke server
     send_request(host, port, resource)
