@@ -38,7 +38,16 @@ def handle_client(client_socket, client_address):
 
         # Parsing request HTTP
         request_data = parse_request(client_socket)
-        print(f"Request: {request_data}\n")
+        
+        # Format dan print request
+        formatted_request = (
+            f"Request from {client_address}:\n"
+            f"Method: {request_data['method']}\n"
+            f"Resource: {request_data['resource']}\n"
+            f"HTTP Version: {request_data['http_version']}\n"
+            f"Headers: {request_data['headers']}"
+        )
+        print(formatted_request)
 
         # Dapatkan resource yang diminta
         requested_resource = request_data["resource"]
