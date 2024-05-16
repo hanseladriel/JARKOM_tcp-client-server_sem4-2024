@@ -2,12 +2,12 @@
 
 ## Usage
 
-Start the web server:
+Jalankan web server:
 ```bash
 python web_server.py <port>
 ```
 
-Start the client:
+Jalankan client:
 ```bash
 python client.py <server_ip> <server_port> <file_name>
 ```
