@@ -86,7 +86,7 @@ def start_server(host, port):
     # Listen untuk connection masuk
     server_socket.listen(5)
 
-    print(f"Server sedang mendengarkan pada {host}:{port}")
+    print(f"Server sedang listening pada {host}:{port}")
 
     try:
         while True:
