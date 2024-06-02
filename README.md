@@ -6,6 +6,10 @@
 ```bash
 python web_server_multi.py <server_IP> <server_port>
 ```
+or
+```bash
+python web_server_single.py <server_IP> <server_port>
+```
 
 ### Menjalankan klien:
 ```bash
