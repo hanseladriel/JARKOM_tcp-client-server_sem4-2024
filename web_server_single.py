@@ -41,11 +41,11 @@ def handle_client(client_socket, client_address):
         
         # Format dan print request
         formatted_request = (
-            f"Request from {client_address}:\n"
+            f"\nRequest from {client_address}:\n"
             f"Method: {request_data['method']}\n"
             f"Resource: {request_data['resource']}\n"
             f"HTTP Version: {request_data['http_version']}\n"
-            f"Headers: {request_data['headers']}"
+            f"Headers: {request_data['headers']}\n\n"
         )
         print(formatted_request)
 
@@ -94,9 +94,8 @@ def start_server(host, port):
             print("Menunggu connection...")
             client_socket, client_address = server_socket.accept()
 
-            # Mulai thread baru untuk menangani connection client
-            client_thread = threading.Thread(target=handle_client, args=(client_socket, client_address))
-            client_thread.start()
+            # Handle client
+            handle_client(client_socket, client_address)
 
     except KeyboardInterrupt:
         print("\nServer dihentikan.")
@@ -104,8 +103,8 @@ def start_server(host, port):
 
 if __name__ == "__main__":
     # Dapatkan host dan port server dari command-line arguments
-    host = "127.0.0.1"
-    port = int(sys.argv[1]) if len(sys.argv) > 1 else 8000
+    host = sys.argv[1] if len(sys.argv) > 1 else "localhost"
+    port = int(sys.argv[2]) if len(sys.argv) > 2 else 8080
 
     print(f"Memulai server pada {host}:{port}")
 
