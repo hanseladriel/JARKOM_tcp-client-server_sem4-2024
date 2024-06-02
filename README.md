@@ -11,4 +11,4 @@ python web_server_multi.py <server_IP> <server_port>
 ```bash
 python client.py <server_IP> <server_port> <nama_file>
 ```
-deafult server_IP = localhost, server_port = 8080, nama_file = "/"
+deafult server_IP = localhost, server_port = 8080, nama_file = /
